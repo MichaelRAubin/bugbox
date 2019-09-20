@@ -21,7 +21,7 @@ namespace BugBox.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET api/id/notes
         [HttpGet("{id}/Notes")]
         public ActionResult<BugNote> Get(string id)
         {

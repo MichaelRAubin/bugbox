@@ -9,7 +9,7 @@ namespace bugbox.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime ReportedDate { get; set; }
-        public DateTime LastModified { get; set; }
-        public DateTime ClosedDate { get; set; }
+        public DateTime? LastModified { get; set; }
+        public DateTime? ClosedDate { get; set; }
     }
 }
