@@ -38,8 +38,17 @@ namespace BugBox.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<BugNote> Post([FromBody] BugNote bugNoteData)
         {
+            try
+            {
+                BugNote myBugNote = _bn.AddBugNote(bugNoteData);
+                return Ok(myBugNote);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // PUT api/values/5

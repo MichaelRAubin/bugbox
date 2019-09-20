@@ -19,8 +19,8 @@ namespace bugbox.Services
 
         public BugNote AddBugNote(BugNote bugNoteData)
         {
-            var exists = _repo.Bugs.Find(b => b.Id == bugNoteData.BugId);
-            if (Bug.ClosedDate != null)
+            var bug = _repo.Bugs.Find(b => b.Id == bugNoteData.BugId);
+            if (bug.ClosedDate != null)
             {
                 throw new Exception("This bug is already closed.");
             }
