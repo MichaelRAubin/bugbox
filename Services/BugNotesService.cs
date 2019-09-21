@@ -31,10 +31,10 @@ namespace bugbox.Services
             return bugNoteData;
         }
 
-        public BugNote EditBugNote(BugNote bugNoteData)
+        public BugNote EditBugNote(BugNote bugNoteData) //TODO need to add logic to check for open bug
         {
             var bugNote = _repo.BugNotes.Find(b => b.Id == bugNoteData.Id);
-            if (bugNoteData == null && bug.ClosedDate != null) { throw new Exception("Note cannot be edited"); }
+            if (bugNoteData == null) { throw new Exception("Note cannot be edited"); }
             bugNoteData.Body = bugNoteData.Body;
             return bugNoteData;
         }

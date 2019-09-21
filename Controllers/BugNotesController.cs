@@ -44,10 +44,19 @@ namespace BugBox.Controllers
             }
         }
 
-        // PUT api/values/5
+        // PUT api/notes/id#
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put(string id, [FromBody] BugNote bugNoteData)
         {
+            try
+            {
+                BugNote myBugNote = _bn.EditBugNote(bugNoteData);
+                return Ok(myBugNote);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         public BugNotesController(BugNotesService bn)
