@@ -14,13 +14,19 @@ namespace bugbox.Services
             return _repo.Bugs;
         }
 
-        public Bug GetBugByID(string id)
+        internal Bug GetBugByID(string id)
         {
             var bug = _repo.Bugs.Find(b => b.Id == id);
             if (bug == null) { throw new Exception("Invalid Bug ID"); }
             return bug;
         }
 
+        public List<BugNote> GetBugNoteByID(string id)
+        {
+            var bugNotes = _repo.BugNotes.FindAll(bn => bn.BugId == id);
+            if (bugNotes == null) { throw new Exception("Invalid Bug Note ID"); }
+            return bugNotes;
+        }
         public Bug AddBug(Bug bugData)
         {
             bugData.Id = Guid.NewGuid().ToString();
@@ -36,7 +42,8 @@ namespace bugbox.Services
             bug.Title = bugData.Title;
             bug.Description = bugData.Description;
             bug.LastModified = DateTime.Now;
-            return bugData;
+            bug.ClosedDate = null;
+            return bug;
         }
 
         public Bug CloseBug(string id)

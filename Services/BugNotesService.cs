@@ -10,13 +10,6 @@ namespace bugbox.Services
     {
         private readonly FakeDb _repo;
 
-        public List<BugNote> GetBugNoteByID(string id)
-        {
-            var bugNotes = _repo.BugNotes.FindAll(bn => bn.BugId == id);
-            if (bugNotes == null) { throw new Exception("Invalid Bug Note ID"); }
-            return bugNotes;
-        }
-
         public BugNote AddBugNote(BugNote bugNoteData)
         {
             var bug = _repo.Bugs.Find(b => b.Id == bugNoteData.BugId);
