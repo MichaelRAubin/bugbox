@@ -23,11 +23,6 @@ namespace bugbox.Services
 
         public Bug AddBug(Bug bugData)
         {
-            var exists = _repo.Bugs.Find(b => b.Title == bugData.Title);
-            if (exists != null)
-            {
-                throw new Exception("This bug already exists.");
-            }
             bugData.Id = Guid.NewGuid().ToString();
             bugData.ReportedDate = DateTime.Now;
             _repo.Bugs.Add(bugData);

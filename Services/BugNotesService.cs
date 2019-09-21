@@ -26,6 +26,7 @@ namespace bugbox.Services
             }
             bugNoteData.Id = Guid.NewGuid().ToString();
             bugNoteData.Timestamp = DateTime.Now;
+            bug.LastModified = DateTime.Now;
             _repo.BugNotes.Add(bugNoteData);
             return bugNoteData;
         }
