@@ -30,6 +30,14 @@ namespace bugbox.Services
             _repo.BugNotes.Add(bugNoteData);
             return bugNoteData;
         }
+
+        public BugNote EditBugNote(BugNote bugNoteData)
+        {
+            var bugNote = _repo.BugNotes.Find(b => b.Id == bugNoteData.Id);
+            if (bugNoteData == null && bug.ClosedDate != null) { throw new Exception("Note cannot be edited"); }
+            bugNoteData.Body = bugNoteData.Body;
+            return bugNoteData;
+        }
         public BugNotesService(FakeDb repo)
         {
             _repo = repo;

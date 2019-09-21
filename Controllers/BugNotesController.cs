@@ -14,13 +14,6 @@ namespace BugBox.Controllers
     {
         private readonly BugNotesService _bn;
 
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET api/id/notes
         [HttpGet("{id}/Notes")]
         public ActionResult<BugNote> Get(string id)
@@ -36,7 +29,7 @@ namespace BugBox.Controllers
             }
         }
 
-        // POST api/values
+        // POST api/notes
         [HttpPost]
         public ActionResult<BugNote> Post([FromBody] BugNote bugNoteData)
         {
@@ -54,12 +47,6 @@ namespace BugBox.Controllers
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
         {
         }
 

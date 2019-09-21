@@ -29,7 +29,23 @@ namespace bugbox.Services
             return bugData;
         }
 
+        public Bug EditBug(Bug bugData)
+        {
+            var bug = _repo.Bugs.Find(b => b.Id == bugData.Id);
+            if (bug == null && bug.ClosedDate != null) { throw new Exception("Bug cannot be edited"); }
+            bug.Title = bugData.Title;
+            bug.Description = bugData.Description;
+            bug.LastModified = DateTime.Now;
+            return bugData;
+        }
 
+        public Bug CloseBug(string id)
+        {
+            var bug = _repo.Bugs.Find(b => b.Id == id);
+            if (bug == null) { throw new Exception("Invalid Bug ID"); }
+            bug.ClosedDate = DateTime.Now;
+            return bug;
+        }
 
         public BugsService(FakeDb repo)
         {
