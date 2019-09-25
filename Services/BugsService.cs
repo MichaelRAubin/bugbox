@@ -21,7 +21,7 @@ namespace bugbox.Services
             return bug;
         }
 
-        public List<BugNote> GetBugNoteByID(string id)
+        public List<BugNote> GetBugNotes(string id)
         {
             var bugNotes = _repo.BugNotes.FindAll(bn => bn.BugId == id);
             if (bugNotes == null) { throw new Exception("Invalid Bug Note ID"); }
@@ -38,7 +38,7 @@ namespace bugbox.Services
         public Bug EditBug(Bug bugData)
         {
             var bug = _repo.Bugs.Find(b => b.Id == bugData.Id);
-            if (bug == null && bug.ClosedDate != null) { throw new Exception("Bug cannot be edited"); }
+            if (bug == null || bug.ClosedDate != null) { throw new Exception("Bug cannot be edited"); }
             bug.Title = bugData.Title;
             bug.Description = bugData.Description;
             bug.LastModified = DateTime.Now;
@@ -50,6 +50,7 @@ namespace bugbox.Services
         {
             var bug = _repo.Bugs.Find(b => b.Id == id);
             if (bug == null) { throw new Exception("Invalid Bug ID"); }
+            if (bug.ClosedDate != null) { throw new Exception("Bug already closed"); }
             bug.ClosedDate = DateTime.Now;
             return bug;
         }

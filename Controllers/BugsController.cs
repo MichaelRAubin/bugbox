@@ -43,7 +43,7 @@ namespace BugBox.Controllers
         {
             try
             {
-                List<BugNote> bugNotes = _bs.GetBugNoteByID(id);
+                List<BugNote> bugNotes = _bs.GetBugNotes(id);
                 return Ok(bugNotes);
             }
             catch (Exception e)
